@@ -4,7 +4,7 @@ from tetris_block import TetrisBlock
 
 # to indicate the position of individual segment of the block
 
-POSITION_LIST = [(-20, 270), (2, 270), (2, 292), (-20, 292)]
+POSITION_LIST = [(-20, 270), (-20, 292), (2, 292), (2, 314)]
 
 class LBlock(TetrisBlock):
     def __init__(self):
