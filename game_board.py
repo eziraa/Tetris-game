@@ -20,4 +20,4 @@ class GameBoard(Turtle):
         self.screen.listen()
 
     def start(self):
-        pass
+        self.screen.exitonclick()
