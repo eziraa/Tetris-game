@@ -1,6 +1,7 @@
 from tetris_block import TetrisBlock
 from turtle import Turtle
 
+# indicating the position of tetris block segments
 POSITION_LIST = [(24, 270), (2, 270), (2, 292), (2, 314)]
 
 

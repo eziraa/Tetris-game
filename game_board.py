@@ -2,6 +2,9 @@
 from turtle import Turtle, Screen
 
 from o_block import OBlock
+from t_block import TBlock
+from l_block import LBlock
+from  j_block import  JBlock
 import random
 import time
 
@@ -10,7 +13,7 @@ ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
 # List that contain class of tetris blocks
-tetris_blocks_list = [OBlock]
+tetris_blocks_list = [ JBlock]
 
 
 # Class game board
