@@ -4,6 +4,7 @@ from tetris_block import TetrisBlock
 # To indicating the correct position of the individual segments of this block
 POSITION_LIST = [(2, 270), (2, 292), (2, 314), (2, 336)]
 
+
 # Creating class OneBlock
 class OneBlock(TetrisBlock):
     def __init__(self):

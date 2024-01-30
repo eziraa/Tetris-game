@@ -8,3 +8,8 @@ class TetrisBlock(Turtle):
         super().__init__()
         self.tetris_block_segments = []
         self.hideturtle()
+        self.front = []
+        self.head = []
+        self.right = []
+        self.left = []
+
