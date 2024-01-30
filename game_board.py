@@ -7,6 +7,7 @@ from l_block import LBlock
 from j_block import JBlock
 from z_block import ZBlock
 from s_block import SBlock
+from one_block import OneBlock
 import random
 import time
 
@@ -15,7 +16,7 @@ ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
 # List that contain class of tetris blocks
-tetris_blocks_list = [SBlock]
+tetris_blocks_list = [OneBlock]
 
 
 # Class game board
