@@ -1,12 +1,16 @@
 # Importing important  packages
 from turtle import Turtle, Screen
+
+from o_block import OBlock
 import random
 import time
 
 # Declaring global object
 ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
-tetris_compnnts_list = []
+
+# List that contain class of tetris blocks
+tetris_blocks_list = [OBlock]
 
 
 # Class game board
@@ -17,7 +21,15 @@ class GameBoard(Turtle):
         self.screen.tracer(0)
         self.screen.setup(500, 600)
         self.screen.bgcolor("black")
+
+        # make screen event consumer
         self.screen.listen()
+        self.is_game_on = True
+
+        # get the current tetris block
+        self.current = random.choice(tetris_blocks_list)()
 
     def start(self):
+        while self.is_game_on:
+            self.screen.update()
         self.screen.exitonclick()
