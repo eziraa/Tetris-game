@@ -38,3 +38,7 @@ class TetrisBlock(Turtle, ABC):
     @abstractmethod
     def update_set_up(self):
         pass
+
+    def startMove(self):
+        for segment in self.tetris_block_segments:
+            segment.forward(22)
