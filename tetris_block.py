@@ -12,3 +12,29 @@ class TetrisBlock(Turtle, ABC):
         self.head = []
         self.right = []
         self.left = []
+
+    # Abstract methods
+
+    @abstractmethod
+    def create(self):
+        pass
+
+    @abstractmethod
+    def set_up(self):
+        pass
+
+    @abstractmethod
+    def update_set_left(self):
+        pass
+
+    @abstractmethod
+    def update_set_right(self):
+        pass
+
+    @abstractmethod
+    def update_set_down(self):
+        pass
+
+    @abstractmethod
+    def update_set_up(self):
+        pass
