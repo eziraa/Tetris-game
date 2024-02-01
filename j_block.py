@@ -14,6 +14,8 @@ class JBlock(TetrisBlock):
         self.set_up()
 
     def create(self):
+        """
+        This method is to create segments of JBlock"""
         for position in POSITION_LIST:
             new_segment = Turtle("square")
             new_segment.penup()
@@ -23,6 +25,8 @@ class JBlock(TetrisBlock):
             self.tetris_block_segments.append(new_segment)
 
     def set_up(self):
+        """
+        This method used to separate head,  fron, left and right of JBlock"""
         self.front.extend([self.tetris_block_segments[0], self.tetris_block_segments[1]])
         self.head.extend([self.tetris_block_segments[0], self.tetris_block_segments[3]])
         self.left.extend([self.tetris_block_segments[0], self.tetris_block_segments[2], self.tetris_block_segments[3]])
@@ -30,8 +34,4 @@ class JBlock(TetrisBlock):
         for segment in self.tetris_block_segments:
             segment.setheading(270)
 
-    def update_set_up(self):
-        x = round(self.tetris_block_segments[2].xcor())
-        y = round(self.tetris_block_segments[2].ycor())
-        position = [(x - 22, y + 22), (x - 22, y), (x, y), (x + 22, y)]
-        self.make_rotate(position)
+    

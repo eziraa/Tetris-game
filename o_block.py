@@ -13,6 +13,8 @@ class OBlock(TetrisBlock):
         self.set_up()
 
     def create(self):
+        """
+        This method is to create segments of OBlock"""
         for position in POSITION_LIST:
             new_segment = Turtle("square")
             new_segment.penup()
@@ -22,6 +24,8 @@ class OBlock(TetrisBlock):
             self.tetris_block_segments.append(new_segment)
 
     def set_up(self):
+        """
+        This method used to set the front of the Block"""
         self.front.extend([self.tetris_block_segments[0], self.tetris_block_segments[1]])
         for segment in self.tetris_block_segments:
             segment.setheading(270)
