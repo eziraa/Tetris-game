@@ -25,3 +25,5 @@ class OBlock(TetrisBlock):
         self.front.extend([self.tetris_block_segments[0], self.tetris_block_segments[1]])
         for segment in self.tetris_block_segments:
             segment.setheading(270)
+
+

@@ -16,7 +16,7 @@ ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
 # List that contain class of tetris blocks
-tetris_blocks_list = [OneBlock]
+tetris_blocks_list = [OBlock]
 
 
 # Class game board
@@ -33,9 +33,11 @@ class GameBoard(Turtle):
         self.is_game_on = True
 
         # get the current tetris block
-        self.current = random.choice(tetris_blocks_list)()
+        self.current = OBlock()
 
     def start(self):
         while self.is_game_on:
+            time.sleep(0.2)
             self.screen.update()
+            self.current.startMove()
         self.screen.exitonclick()

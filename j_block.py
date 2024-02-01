@@ -1,3 +1,5 @@
+from abc import ABC
+
 from tetris_block import TetrisBlock
 from turtle import Turtle
 
@@ -27,3 +29,9 @@ class JBlock(TetrisBlock):
         self.right.extend([self.tetris_block_segments[3], self.tetris_block_segments[2], self.tetris_block_segments[1]])
         for segment in self.tetris_block_segments:
             segment.setheading(270)
+
+    def update_set_up(self):
+        x = round(self.tetris_block_segments[2].xcor())
+        y = round(self.tetris_block_segments[2].ycor())
+        position = [(x - 22, y + 22), (x - 22, y), (x, y), (x + 22, y)]
+        self.make_rotate(position)
