@@ -9,8 +9,12 @@ class LBlock(TetrisBlock):
     def __init__(self):
         super().__init__()
         self.create()
+        self.set_up()
 
+    
     def create(self):
+        """
+        This method is to create segment of LBlock"""
         for position in POSITION_LIST:
             new_segment = Turtle("square")
             new_segment.penup()
@@ -19,3 +23,12 @@ class LBlock(TetrisBlock):
             new_segment.goto(position)
             self.tetris_block_segments.append(new_segment)
 
+    def set_up(self):
+        """
+        This method is to assign left, head, front, right segment of LBlock"""
+        self.front.extend([self.tetris_block_segments[0], self.tetris_block_segments[1]])
+        self.head.extend([self.tetris_block_segments[0], self.tetris_block_segments[3]])
+        self.left.extend([self.tetris_block_segments[3], self.tetris_block_segments[2], self.tetris_block_segments[1]])
+        self.right.extend([self.tetris_block_segments[3], self.tetris_block_segments[2], self.tetris_block_segments[0]])
+        for segment in self.tetris_block_segments:
+            segment.setheading(270)
