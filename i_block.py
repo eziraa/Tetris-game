@@ -11,6 +11,7 @@ class IBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
+        # self.rotate_position = [self.rotateFirst]
 
     # Implementing create method to create ui of the block
     def create(self):
@@ -27,9 +28,12 @@ class IBlock(TetrisBlock):
     def set_up(self):
         """
         This method used to set front, left, right, head of the Block"""
-        self.front.append(self.tetris_list[0])
-        self.left.extend(self.tetris_list)
-        self.right.extend(self.tetris_list)
-        self.head.append(self.tetris_list[3])
-        for segment in self.tetris_list:
+        self.front.append(self.tetris_block_segments[0])
+        self.left.extend(self.tetris_block_segments)
+        self.right.extend(self.tetris_block_segments)
+        self.head.append(self.tetris_block_segments[3])
+        self.center = self.tetris_block_segments[1]
+        for segment in self.tetris_block_segments:
             segment.setheading(270)
+    
+
