@@ -12,7 +12,10 @@ class SBlock(TetrisBlock):
         self.create()
         self.set_up()
         self.rotate_index = 0
-        self.rotate_position = [self.rotateFirst]
+        self.rotate_positions = [
+            [[-22, 22], [0, 22], [0, 0], [22, 0]],
+            [[-22, -22], [-22, 0], [0, 0], [0, 22]]
+        ]
 
     def create(self):
         """
@@ -36,13 +39,8 @@ class SBlock(TetrisBlock):
         self.left.extend([self.tetris_block_segments[0], self.tetris_block_segments[1], self.tetris_block_segments[3]])
         self.right.extend([self.tetris_block_segments[0], self.tetris_block_segments[2], self.tetris_block_segments[3]])
         self.head.extend([self.tetris_block_segments[3], self.tetris_block_segments[1]])
+        self.center = self.tetris_block_segments[2]
         for segment in self.tetris_block_segments:
             segment.setheading(270)
 
-    def rotateFirst(self):
-        """
-        This method used to rotate to the block for first time from its original arragement"""
-        x = round(self.tetris_block_segments[2].xcor())
-        y = round(self.tetris_block_segments[2].ycor())
-        position = [(x - 22 , y + 22), (x, y + 22), (x, y ), (x + 22, y)]
-        return position
+    

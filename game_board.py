@@ -16,7 +16,7 @@ ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
 # List that contain class of tetris blocks
-tetris_blocks_list = [OBlock]
+tetris_blocks_list = [LBlock]
 
 
 # Class game board
@@ -33,7 +33,7 @@ class GameBoard(Turtle):
         self.is_game_on = True
 
         # get the current tetris block
-        self.current = SBlock()
+        self.current = TBlock()
 
     def start(self):
         self.screen.onkey(self.current.rotate , 'Up')

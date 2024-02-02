@@ -14,14 +14,18 @@ class TetrisBlock(Turtle):
         self.left = []
         self.center = 0
         self.rotate_index = 0
-        self.rotate_position = []
+        self.rotate_positions = []
 
     def startMove(self):
         for segment in self.tetris_block_segments:
             segment.forward(22)
+    
+    
 
     def rotate(self):
-        position = self.rotate_position[self.rotate_index]()
+        if len(self.rotate_positions)  == 0:
+            return 
+        position = self.getPosition()
         for i in range(len(position)):
             self.tetris_block_segments[i].goto(position[i])
         front = self.front
@@ -33,5 +37,16 @@ class TetrisBlock(Turtle):
         self.head.extend(self.left)
         self.left.clear()
         self.left.extend(front)
+    
+    def getPosition(self):
+        """
+        This method is to get the next position when we rotate the block"""
+        x = round(self.center.xcor())
+        y = round(self.center.ycor())
+        position = []
+        for pos in self.rotate_positions[self.rotate_index]:
+            position.append((x + pos[0], y + pos[1]))
+        self.rotate_index = self.rotate_index + 1 if self.rotate_index < len(self.rotate_positions) - 1 else 0
+        return position
 
         

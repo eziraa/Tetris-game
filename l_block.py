@@ -10,7 +10,12 @@ class LBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
-        self.rotate_position = [self.rotateFirst, self.rotateSecond, self.rotateThird, self.backTofirst]
+        self.rotate_positions = [
+            [[-22, -22] , [-22, 0], [0, 0], [22, 0]],
+            [[-22, 22], [0, 22], [0, 0],[ 0, -22]],
+            [[22, 22], [22,0], [0, 0], [-22, 0]],
+            [[22, -22], [0, -22], [0, 0], [0, 22]]         
+        ]
 
     
     def create(self):
@@ -35,43 +40,4 @@ class LBlock(TetrisBlock):
         for segment in self.tetris_block_segments:
             segment.setheading(270)
     
-    def rotateFirst(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for first time"""
-        x = round(self.center.xcor())
-        y = round(self.center.ycor())
-        position = [(x - 22, y - 22), (x - 22, y), (x, y), (x + 22, y)]
-        self.rotate_index = 1
-        return position
     
-    def rotateSecond(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for second time"""
-        
-        x = round(self.center.xcor())
-        y = round(self.center.ycor())
-        position = [(x - 22, y + 22), (x, y + 22), (x, y), (x, y - 22)]
-        self.rotate_index = 2
-        return position
-    
-    def rotateThird(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for third time"""
-        
-        x = round(self.center.xcor())
-        y = round(self.center.ycor())
-        position = [(x + 22, y + 22), (x + 22, y), (x, y), (x - 22, y )]
-        self.rotate_index = 3
-        return position
-    
-    def backTofirst(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for fourth time to back ro original position"""
-        
-        x = round(self.center.xcor())
-        y = round(self.center.ycor())
-        position = [(x + 22, y - 22), (x, y - 22), (x, y), (x, y + 22)]
-        self.rotate_index = 0
-        return position
-
-

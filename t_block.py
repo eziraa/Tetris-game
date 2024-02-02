@@ -9,6 +9,12 @@ class TBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
+        self.rotate_positions = [
+            [[0, 22], [0, 0], [0, -22], [22, 0]],
+            [[22, 0], [0, 0], [-22, 0], [0, -22]],
+            [[0, -22], [0, 0], [0, 22], [-22, 0]],
+            [[-22, 0], [0, 0], [22, 0], [0, 22]]
+        ]
 
     def create(self):
         """
@@ -24,9 +30,10 @@ class TBlock(TetrisBlock):
     def set_up(self):
         """
         This method is to seprate head, front, left and right of TBlock """
-        self.front.extend([self.tetris_list[0], self.tetris_list[1], self.tetris_list[2]])
-        self.left.extend([self.tetris_list[0], self.tetris_list[3]])
-        self.head.extend([self.tetris_list[0], self.tetris_list[2], self.tetris_list[3]])
-        self.right.extend([self.tetris_list[3], self.tetris_list[2]])
-        for segment in self.tetris_list:
+        self.front.extend([self.tetris_block_segments[0], self.tetris_block_segments[1], self.tetris_block_segments[2]])
+        self.left.extend([self.tetris_block_segments[0], self.tetris_block_segments[3]])
+        self.head.extend([self.tetris_block_segments[0], self.tetris_block_segments[2], self.tetris_block_segments[3]])
+        self.right.extend([self.tetris_block_segments[3], self.tetris_block_segments[2]])
+        self.center = self.tetris_block_segments[0]
+        for segment in self.tetris_block_segments:
             segment.setheading(270)
