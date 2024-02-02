@@ -12,7 +12,6 @@ class JBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
-        self.rotate_position = [self.rotateFirst, self.rotateSecond]
 
     def create(self):
         """
@@ -36,21 +35,21 @@ class JBlock(TetrisBlock):
         for segment in self.tetris_block_segments:
             segment.setheading(270)
             
-    def rotateFirst(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for first time"""
+    def getPosition(self):
         x = round(self.center.xcor())
         y = round(self.center.ycor())
-        position = [(x - 22, y + 22), (x - 22, y), (x, y), (x + 22, y)]
-        self.rotate_index = 1
+        position = []
+        if self.rotate_index == 0:
+            position = [(x - 22, y + 22), (x - 22, y), (x, y), (x + 22, y)]
+            self.rotate_index = 1
+        elif self.rotate_index == 1:
+            position = [(x + 22, y + 22), (x, y + 22), (x, y), (x, y - 22)]
+            self.rotate_index = 2
+        elif self.rotate_index == 2:
+            position = [(x + 22, y - 22), (x + 22, y), (x, y), (x - 22, y )]
+            self.rotate_index = 3
+        else:
+            position = [(x - 22, y - 22), (x, y - 22), (x, y), (x, y + 22)]
+            self.rotate_index = 0
         return position
-    
-    def rotateSecond(self):
-        """
-        This method is to get the correct position of the block when we rotate the block for second time"""
         
-        x = round(self.center.xcor())
-        y = round(self.center.ycor())
-        position = [(x + 22, y + 22), (x, y + 22), (x, y), (x, y - 22)]
-        self.rotate_index = 2
-        return position
