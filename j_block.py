@@ -12,6 +12,7 @@ class JBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
+        self.rotate_position = [self.rotateFirst]
 
     def create(self):
         """
@@ -31,7 +32,8 @@ class JBlock(TetrisBlock):
         self.head.extend([self.tetris_block_segments[0], self.tetris_block_segments[3]])
         self.left.extend([self.tetris_block_segments[0], self.tetris_block_segments[2], self.tetris_block_segments[3]])
         self.right.extend([self.tetris_block_segments[3], self.tetris_block_segments[2], self.tetris_block_segments[1]])
+        self.center = self.tetris_block_segments[2]
         for segment in self.tetris_block_segments:
             segment.setheading(270)
-
+            
     
