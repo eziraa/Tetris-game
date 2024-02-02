@@ -36,4 +36,12 @@ class JBlock(TetrisBlock):
         for segment in self.tetris_block_segments:
             segment.setheading(270)
             
+    def rotateFirst(self):
+        """
+        This method is to get the correct position of the block when we rotate the block for first time"""
+        x = round(self.center.xcor())
+        y = round(self.center.ycor())
+        position = [(x - 22, y + 22), (x - 22, y), (x, y), (x + 22, y)]
+        self.rotate_index = 1
+        return position
     
