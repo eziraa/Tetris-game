@@ -12,7 +12,7 @@ class IBlock(TetrisBlock):
         self.create()
         self.set_up()
         # container for methods that return correct postion when i rotate the block
-        self.rotate_position = [self.rotateFirst]
+        self.rotate_position = [self.rotateFirst, self.rotateSecond]
 
     # Implementing create method to create ui of the block
     def create(self):
@@ -38,7 +38,22 @@ class IBlock(TetrisBlock):
             segment.setheading(270)
     
     def rotateFirst(self):
+        """
+        This method is to get the correct position of the block when we rotate the block for first time"""
         x = round(self.center.xcor())
         y = round(self.center.ycor())
         position = [(x - 22, y), (x, y), (x + 22, y), (x + 44, y)]
+        self.rotate_index = 1
         return position
+    
+    def rotateSecond(self):
+        """
+        This method is to get the correct position of the block when we rotate the block for first time"""
+        x = round(self.center.xcor())
+        y = round(self.center.ycor())
+        position = [(x, y - 22), (x, y), (x, y + 22), (x, y + 44)]
+        self.rotate_index = 0
+        return position
+
+    
+    
