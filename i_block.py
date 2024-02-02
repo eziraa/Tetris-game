@@ -11,7 +11,8 @@ class IBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
-        # self.rotate_position = [self.rotateFirst]
+        # container for methods that return correct postion when i rotate the block
+        self.rotate_position = [self.rotateFirst]
 
     # Implementing create method to create ui of the block
     def create(self):
@@ -36,4 +37,8 @@ class IBlock(TetrisBlock):
         for segment in self.tetris_block_segments:
             segment.setheading(270)
     
-
+    def rotateFirst(self):
+        x = round(self.center.xcor())
+        y = round(self.center.ycor())
+        position = [(x - 22, y), (x, y), (x + 22, y), (x + 44, y)]
+        return position
