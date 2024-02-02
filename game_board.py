@@ -7,7 +7,7 @@ from l_block import LBlock
 from j_block import JBlock
 from z_block import ZBlock
 from s_block import SBlock
-from one_block import OneBlock
+from i_block import IBlock
 import random
 import time
 
@@ -33,9 +33,10 @@ class GameBoard(Turtle):
         self.is_game_on = True
 
         # get the current tetris block
-        self.current = OBlock()
+        self.current = SBlock()
 
     def start(self):
+        self.screen.onkey(self.current.rotate , 'Up')
         while self.is_game_on:
             time.sleep(0.2)
             self.screen.update()
