@@ -10,7 +10,7 @@ class LBlock(TetrisBlock):
         super().__init__()
         self.create()
         self.set_up()
-        self.rotate_position = [self.rotateFirst, self.rotateSecond]
+        self.rotate_position = [self.rotateFirst, self.rotateSecond, self.rotateThird]
 
     
     def create(self):
@@ -52,6 +52,16 @@ class LBlock(TetrisBlock):
         y = round(self.center.ycor())
         position = [(x - 22, y + 22), (x, y + 22), (x, y), (x, y - 22)]
         self.rotate_index = 2
+        return position
+    
+    def rotateThird(self):
+        """
+        This method is to get the correct position of the block when we rotate the block for second time"""
+        
+        x = round(self.center.xcor())
+        y = round(self.center.ycor())
+        position = [(x + 22, y + 22), (x + 22, y), (x, y), (x - 22, y )]
+        self.rotate_index = 3
         return position
 
 
