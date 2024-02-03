@@ -39,13 +39,13 @@ class GameBoard(Turtle):
     def start(self):
         while self.is_game_on:
             time.sleep(0.2)
-            self.screen.update()
-            self.current.startMove()
             self.screen.onkey(self.current.rotate , 'Up')
             self.screen.onkey(self.current.move_left , 'Left')
             self.screen.onkey(self.current.move_right , 'Right')
             self.screen.onkey(self.current.move_last , 'Down')
-            
+            self.screen.update()
+            if not self.current.terminated:
+                self.current.startMove()
             for item in self.current.front:
                 if not self.current.terminated:
                     for head in self.terminated_segments:
@@ -67,5 +67,5 @@ class GameBoard(Turtle):
             if self.current.terminated:
                 self.terminated_segments.extend(self.current.tetris_block_segments)
                 self.current.terminated = False       
-                self.current = LBlock() 
+                self.current =random.choice(TETRIS_BLOCKS_LIST)() 
         self.screen.exitonclick()

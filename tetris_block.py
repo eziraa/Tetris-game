@@ -112,7 +112,4 @@ class TetrisBlock(Turtle):
                         break
             if not self.terminated:
                 self.startMove()
-        else:
-            for segment in self.tetris_block_segments:
-                segment.backward(22)
-
+        
