@@ -39,33 +39,42 @@ class GameBoard(Turtle):
     def start(self):
         while self.is_game_on:
             time.sleep(0.2)
-            self.screen.onkey(self.current.rotate , 'Up')
-            self.screen.onkey(self.current.move_left , 'Left')
-            self.screen.onkey(self.current.move_right , 'Right')
-            self.screen.onkey(self.current.move_last , 'Down')
+            self.addEventListeners()
             self.screen.update()
             if not self.current.terminated:
                 self.current.startMove()
-            for item in self.current.front:
-                if not self.current.terminated:
-                    for head in self.terminated_segments:
-                        if round(abs(item.ycor() - head.ycor())) == 22 and abs(item.xcor() - head.xcor()) < 1:
-                            self.current.terminated = True
-                            break
-                    if item.ycor() < -270:
+            self.checkTerminated()
+            self.checkGameOver()
+            if self.current.terminated:
+                self.getNewBlock()
+        self.screen.exitonclick()
+    
+    def addEventListeners(self):
+        self.screen.onkey(self.current.rotate , 'Up')
+        self.screen.onkey(self.current.move_left , 'Left')
+        self.screen.onkey(self.current.move_right , 'Right')
+        self.screen.onkey(self.current.move_last , 'Down')
+    
+    def checkTerminated(self):
+        for item in self.current.front:
+            if not self.current.terminated:
+                for head in self.terminated_segments:
+                    if round(abs(item.ycor() - head.ycor())) == 22 and abs(item.xcor() - head.xcor()) < 1:
                         self.current.terminated = True
                         break
-                else:
-                    for segment in self.current.tetris_block_segments:
-                        if segment.ycor() > 270:
-                            tim = Turtle()
-                            tim.color('white')
-                            tim.write("GAME OVER!!!", align="center", font=("Arial", 24, "normal"))
-                            tim.hideturtle()
-                            self.is_game_on = False
+                if item.ycor() < -270:
+                    self.current.terminated = True
+                    break
+    def checkGameOver(self):
+        for segment in self.terminated_segments:
+            if segment.ycor() > 270:
+                tim = Turtle()
+                tim.color('white')
+                tim.write("GAME OVER!!!", align="center", font=("Arial", 24, "normal"))
+                tim.hideturtle()
+                self.is_game_on = False
+    def getNewBlock(self):
+        self.terminated_segments.extend(self.current.tetris_block_segments)
+        self.current.terminated = False       
+        self.current =random.choice(TETRIS_BLOCKS_LIST)()         
             
-            if self.current.terminated:
-                self.terminated_segments.extend(self.current.tetris_block_segments)
-                self.current.terminated = False       
-                self.current =random.choice(TETRIS_BLOCKS_LIST)() 
-        self.screen.exitonclick()
