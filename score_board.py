@@ -16,7 +16,6 @@ class ScoreBoard(Turtle):
         self.write(f"Score: {self.score}", align=ALIGNMENT, font=FONT)
         self.hideturtle()
         self.score_update_level = 0
-        self.set_up()
 
     def set_up(self):
         while True:
