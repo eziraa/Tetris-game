@@ -51,6 +51,14 @@ class GameBoard(Turtle):
                     if item.ycor() < -270:
                         self.current.terminated = True
                         break
+                else:
+                    for segment in self.current.tetris_block_segments:
+                        if segment.ycor() > 270:
+                            tim = Turtle()
+                            tim.color('white')
+                            tim.write("GAME OVER!!!", align="center", font=("Arial", 24, "normal"))
+                            tim.hideturtle()
+                            self.is_game_on = False
             
             if self.current.terminated:
                 self.terminated_segments.extend(self.current.tetris_block_segments)
