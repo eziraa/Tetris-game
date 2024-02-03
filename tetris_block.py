@@ -1,7 +1,7 @@
 import time
 
 from turtle import Turtle
-
+from terminated_block_segments import terminated_segments
 
 class TetrisBlock(Turtle):
     def __init__(self):
@@ -15,6 +15,7 @@ class TetrisBlock(Turtle):
         self.center = 0
         self.rotate_index = 0
         self.rotate_positions = []
+        self.terminated = False
 
     def startMove(self):
         for segment in self.tetris_block_segments:
@@ -26,17 +27,18 @@ class TetrisBlock(Turtle):
         if len(self.rotate_positions)  == 0:
             return 
         position = self.getPosition()
-        for i in range(len(position)):
-            self.tetris_block_segments[i].goto(position[i])
-        front = self.front
-        self.front.clear()
-        self.front.extend(self.right)
-        self.right.clear()
-        self.right.extend(self.head)
-        self.head.clear()
-        self.head.extend(self.left)
-        self.left.clear()
-        self.left.extend(front)
+        if not TetrisBlock.no_neighbour(position):
+            for i in range(len(position)):
+                self.tetris_block_segments[i].goto(position[i])
+            front = self.front
+            self.front.clear()
+            self.front.extend(self.right)
+            self.right.clear()
+            self.right.extend(self.head)
+            self.head.clear()
+            self.head.extend(self.left)
+            self.left.clear()
+            self.left.extend(front)
     
     def getPosition(self):
         """
@@ -49,4 +51,21 @@ class TetrisBlock(Turtle):
         self.rotate_index = self.rotate_index + 1 if self.rotate_index < len(self.rotate_positions) - 1 else 0
         return position
 
+    @staticmethod
+    def no_neighbour(position):
+        x_coordinate = set()
+        y_coordinate = set()
+        for elem in terminated_segments:
+            x_coordinate.add(round(elem.xcor()))
+            y_coordinate.add(round(elem.ycor()))
+        x_coordinate = list(x_coordinate)
+        y_coordinate = list(y_coordinate)
+        illegal = False
+        for item in position:
+            for coordinate in y_coordinate:
+                for coordinate_x in x_coordinate:
+                    if round(item[0]) == coordinate_x and round(item[1]) == coordinate:
+                        illegal = True
+                        break
+        return illegal
         
