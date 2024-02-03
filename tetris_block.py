@@ -82,3 +82,19 @@ class TetrisBlock(Turtle):
         if not is_near:
             for item in self.tetris_block_segments:
                 item.goto((item.xcor() - 22, item.ycor()))
+
+    def move_right(self):
+        is_near = False
+        for item in self.tetris_block_segments:
+            for head in terminated_segments:
+                if round(abs(item.xcor() - head.xcor())) == 22 and abs(item.ycor() - head.ycor()) < 1:
+                    # if head.distance(item) <= 23:
+                    is_near = True
+                    break
+            if item.xcor() > 220:
+                is_near = True
+                break
+
+        if not is_near:
+            for item in self.tetris_block_segments:
+                item.goto((item.xcor() + 22, item.ycor()))

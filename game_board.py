@@ -43,6 +43,7 @@ class GameBoard(Turtle):
             self.current.startMove()
             self.screen.onkey(self.current.rotate , 'Up')
             self.screen.onkey(self.current.move_left , 'Left')
+            self.screen.onkey(self.current.move_right , 'Right')
             
             for item in self.current.front:
                 if not self.current.terminated:
