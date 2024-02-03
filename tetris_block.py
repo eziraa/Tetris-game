@@ -98,3 +98,21 @@ class TetrisBlock(Turtle):
         if not is_near:
             for item in self.tetris_block_segments:
                 item.goto((item.xcor() + 22, item.ycor()))
+    
+    def move_last(self):
+        while not self.terminated:
+            for item in self.front:
+                if not self.terminated:
+                    for head in terminated_segments:
+                        if round(abs(item.ycor() - head.ycor())) == 22 and abs(item.xcor() - head.xcor()) < 1:
+                            self.terminated = True
+                            break
+                    if item.ycor() < -270:
+                        self.terminated = True
+                        break
+            if not self.terminated:
+                self.startMove()
+        else:
+            for segment in self.tetris_block_segments:
+                segment.backward(22)
+
