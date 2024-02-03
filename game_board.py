@@ -41,4 +41,19 @@ class GameBoard(Turtle):
             time.sleep(0.2)
             self.screen.update()
             self.current.startMove()
+            
+            for item in self.current.front:
+                if not self.current.terminated:
+                    for head in self.terminated_segments:
+                        if round(abs(item.ycor() - head.ycor())) == 22 and abs(item.xcor() - head.xcor()) < 1:
+                            self.current.terminated = True
+                            break
+                    if item.ycor() < -270:
+                        self.current.terminated = True
+                        break
+            
+            if self.current.terminated:
+                self.terminated_segments.extend(self.current.tetris_block_segments)
+                self.current.terminated = False       
+                self.current = LBlock() 
         self.screen.exitonclick()
