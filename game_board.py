@@ -16,7 +16,7 @@ ALIGNMENT = "center"
 FONT = ("Arial", 24, "normal")
 
 # List that contain class of tetris blocks
-tetris_blocks_list = [LBlock]
+TETRIS_BLOCKS_LIST = [LBlock, SBlock, ZBlock, TBlock, IBlock,JBlock, OBlock]
 
 
 # Class game board
@@ -31,9 +31,9 @@ class GameBoard(Turtle):
         # make screen event consumer
         self.screen.listen()
         self.is_game_on = True
-
+        self.terminated_segments = []
         # get the current tetris block
-        self.current = TBlock()
+        self.current = random.choice(TETRIS_BLOCKS_LIST)()
 
     def start(self):
         self.screen.onkey(self.current.rotate , 'Up')
