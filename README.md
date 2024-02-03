@@ -45,7 +45,7 @@ To run the Tetris Game executable (.exe) on your local machine or distribute it 
 
 1. **Download the Repository:**
    ```bash
-   git clone https://github.com/yourusername/tetris.git
+   git clone https://github.com/eziraa/tetris.git
    cd tetris
 
 **Ensure Python is Installed:**
