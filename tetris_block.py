@@ -68,4 +68,17 @@ class TetrisBlock(Turtle):
                         illegal = True
                         break
         return illegal
-        
+    
+    def move_left(self):
+        is_near = False
+        for item in self.tetris_block_segments:
+            for head in terminated_segments:
+                if round(abs(item.xcor() - head.xcor())) == 22 and abs(item.ycor() - head.ycor()) < 1:
+                    is_near = True
+                    break
+            if item.xcor() <= -230:
+                is_near = True
+                break
+        if not is_near:
+            for item in self.tetris_block_segments:
+                item.goto((item.xcor() - 22, item.ycor()))

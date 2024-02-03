@@ -8,6 +8,7 @@ from j_block import JBlock
 from z_block import ZBlock
 from s_block import SBlock
 from i_block import IBlock
+from terminated_block_segments import terminated_segments
 import random
 import time
 
@@ -31,16 +32,17 @@ class GameBoard(Turtle):
         # make screen event consumer
         self.screen.listen()
         self.is_game_on = True
-        self.terminated_segments = []
+        self.terminated_segments = terminated_segments
         # get the current tetris block
         self.current = random.choice(TETRIS_BLOCKS_LIST)()
 
     def start(self):
-        self.screen.onkey(self.current.rotate , 'Up')
         while self.is_game_on:
             time.sleep(0.2)
             self.screen.update()
             self.current.startMove()
+            self.screen.onkey(self.current.rotate , 'Up')
+            self.screen.onkey(self.current.move_left , 'Left')
             
             for item in self.current.front:
                 if not self.current.terminated:
